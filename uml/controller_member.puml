@@ -1,0 +1,27 @@
+@startuml
+ interface MemberController {
+
+
+ +List<MemberDTO> name(String nachname)
+ +List<MemberDTO> firstname(String firstname)
+  +List<MemberDTO> role(Role role)
+  MemberDTO email(String email)
+ }
+ class MemberServiceImpl{
+  - MemberRepository memberRepository
+ }
+
+ MemberService <|--  MemberServiceImpl
+
+ note right of MemberService
+ Has to be annotated with @Service
+ end note
+
+ note left of MemberServiceImpl
+Methodparameter must have valid values,
+otherwise the returnvalue has to be null or an empty list
+ end note
+note right of MemberServiceImpl::"memberRepository"
+This is set with Constructor-Injection
+end note
+@enduml

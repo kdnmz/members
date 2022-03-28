@@ -1,0 +1,25 @@
+@startuml
+ interface MemberService {
+ +List<MemberDAO> findByName(String nachname)
+ +List<MemberDAO> findByFirstnanme(String nachname)
+  +List<MemberDAO> findByRole(Role role)
+  +Optional<MemberDAO> findByEmail(String email)
+ }
+ class MemberServiceImpl{
+  - MemberRepository memberRepository
+ }
+
+ MemberService <|--  MemberServiceImpl
+
+ note right of MemberService
+ Has to be annotated with @Service
+ end note
+
+ note left of MemberServiceImpl
+Methodparameter must have valid values,
+otherwise the returnvalue has to be null or an empty list
+ end note
+note right of MemberServiceImpl::"memberRepository"
+This is set with Constructor-Injection
+end note
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+entity "Member" as t {
+  *id : number <<PK>>
+  --
+  *firstname : text
+  *name : text
+  *email : text
+  description : text
+  --
+  *role_id : number <<FK>>
+  addresse_id : number <<FK>>
+  phone_id : number <<FK>>
+}
+entity "Role" as r {
+  *id : number <<PK>>
+  --
+  *type : text
+  *description : text
+}
+
+
+entity "Phonenumber" as tel {
+  *id : number <<PK>>
+  --
+  code : text
+  *number : text
+  *type: text
+
+}
+
+entity "Address" as adr {
+  *id : number <<PK>>
+  --
+  *street : text
+  *number : text
+  *zip: text
+  *country: text
+  *type: text
+}
+
+t "1"--"1..n"r
+t "0"--"n"adr
+t "0"--"n"tel
+@enduml

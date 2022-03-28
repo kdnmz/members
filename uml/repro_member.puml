@@ -1,0 +1,23 @@
+@startuml
+ interface MemberRepository {
+ +List<MemberDAO> findByName(String name)
+ +List<MemberDAO> findByFirstnanme(String firstname)
+ +List<MemberDAO> findByRole(Role role)
+ +Optional<MemberDAO> findByEmail(String email)
+ }
+ interface JpaRepository <MemberDAO,Long>
+
+ MemberRepository <|--  JpaRepository
+ note right of MemberRepository
+ Has to be annotated with @Repository
+ end note
+
+ note right of JpaRepository
+ This is provided by Spring and has
+ standard finder-methods i.e.:
+ findAll()
+ save(..)
+ update(..)
+ delete(..)
+ end note
+@enduml
