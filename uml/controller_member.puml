@@ -1,27 +1,35 @@
 @startuml
  interface MemberController {
-
-
  +List<MemberDTO> name(String nachname)
  +List<MemberDTO> firstname(String firstname)
   +List<MemberDTO> role(Role role)
-  MemberDTO email(String email)
+  +MemberDTO email(String email)
  }
- class MemberServiceImpl{
-  - MemberRepository memberRepository
+ class MemberControllerImpl{
+  + List<MemberDTO> map(List<MemberDAO> dao)
+  + List<MemberDAO> map(List<MemberDTO> dto)
+    + MemberDTO map(MemberDAO dao)
+    + MemberDAO map(MemberDTO dto)
  }
 
- MemberService <|--  MemberServiceImpl
+ class MemberMapper{
+ - DozerBeanMapper mapper
+  + <F, T> List<T> map(List<F> dao, Class T)
+  + <F,T> T map(F dao, T)
+ }
 
- note right of MemberService
- Has to be annotated with @Service
+MemberController <|--  MemberControllerImpl
+MemberMapper "uses"<--  MemberControllerImpl
+
+ note left of MemberController
+ Has to be annotated with @RestController
  end note
 
- note left of MemberServiceImpl
+ note left of MemberControllerImpl
 Methodparameter must have valid values,
 otherwise the returnvalue has to be null or an empty list
  end note
-note right of MemberServiceImpl::"memberRepository"
+note right of MemberControllerImpl::"memberRepository"
 This is set with Constructor-Injection
 end note
 @enduml

@@ -28,7 +28,7 @@ public class MemberRestController {
     }
 
     @GetMapping("/with/name/{name}")
-    public List<MemberDTO> name( String name) {
+    public List<MemberDTO> name(String name) {
         return memberControllerService.getMemberWithName(name);
     }
 

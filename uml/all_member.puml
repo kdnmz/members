@@ -1,0 +1,23 @@
+@startuml
+ interface MemberController {
+ }
+ class MemberControllerImpl{
+  }
+
+ class MemberMapper{
+ }
+
+interface MemberService {
+  }
+ class MemberServiceImpl{
+  }
+interface MemberRepository {
+
+ }
+
+MemberService <|--  MemberServiceImpl
+MemberController <|--  MemberControllerImpl
+MemberMapper "uses"<--  MemberControllerImpl
+MemberService "uses"<--  MemberControllerImpl
+MemberRepository "uses"<--  MemberServiceImpl
+@enduml
